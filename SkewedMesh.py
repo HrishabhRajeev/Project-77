@@ -584,7 +584,7 @@ class Elements:
         return
 
 
-mesh1 = Elements(1 / 4, alpha=0.26)
+# mesh1 = Elements(1 / 4, alpha=0.26)
 # mesh3 = Elements(1 / 4, alpha=0.46)
 # print(mesh1.node_connect)
 # print('\n\n', mesh1.element_centers)
@@ -604,10 +604,10 @@ mesh1 = Elements(1 / 4, alpha=0.26)
 #     writer.writerow(hybrid_vol.values())
 #     writer.writerow(standard_vol.keys())
 #     writer.writerow(standard_vol.values())
-mesh1.drawGraph()
+# mesh1.drawGraph()
 # print(mesh1.dphi_dxdy_hybrid_plus)
 # mesh3.drawGraph()
-plt.show()
-print(mesh1.node_connect)
+# plt.show()
+# print(mesh1.node_connect)
 
 # ----------------------------------------------------------------------------------------------------------------------
