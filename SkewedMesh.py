@@ -302,43 +302,43 @@ class Elements:
 
     # this bit of code generates the graphs and plots them for three separate meshes and alpha values ------------------
 
-    # @property
-    # def dphi_dxdy_hybrid(self):
-    #
-    #     node_connect = self.element_center_connect
-    #     edge_connect = self.edge_connect
-    #
-    #     internal_vertex_size = int(np.power((self.cell_size - 1), 2))
-    #     z_vector = self.z_vector
-    #     volume = self.hybrid_volume[0]
-    #     dphidx = np.zeros(shape=internal_vertex_size)
-    #     dphidy = np.zeros(shape=internal_vertex_size)
-    #     Cfx = np.zeros(shape=internal_vertex_size)
-    #     Cfy = np.zeros(shape=internal_vertex_size)
-    #
-    #     for node_number, node in enumerate(node_connect):
-    #         coords = node_connect[node]
-    #         edge_coords = edge_connect[node]
-    #
-    #         for edge in range(4):
-    #
-    #             if edge == 3:
-    #                 vector_l = coords[0] - coords[edge]
-    #
-    #             else:
-    #                 vector_l = coords[edge + 1] - coords[edge]
-    #
-    #             normal = np.cross(vector_l, z_vector)
-    #             unit_normal_x = (normal / np.linalg.norm(normal))[0]
-    #             unit_normal_y = (normal / np.linalg.norm(normal))[1]
-    #             area = np.linalg.norm(vector_l)
-    #
-    #             Cfx[node_number] += (area * unit_normal_x) * np.sin(edge_coords[edge][0])
-    #             Cfy[node_number] += (area * unit_normal_y) * np.cos(edge_coords[edge][1]) * 1.5
-    #
-    #         dphidx[node_number] = Cfx[node_number] / volume[node]
-    #         dphidy[node_number] = Cfy[node_number] / volume[node]
-    #     return dphidx, dphidy
+    @property
+    def dphi_dxdy_hybrid(self):
+
+        node_connect = self.element_center_connect
+        edge_connect = self.edge_connect
+
+        internal_vertex_size = int(np.power((self.cell_size - 1), 2))
+        z_vector = self.z_vector
+        volume = self.hybrid_volume[0]
+        dphidx = np.zeros(shape=internal_vertex_size)
+        dphidy = np.zeros(shape=internal_vertex_size)
+        Cfx = np.zeros(shape=internal_vertex_size)
+        Cfy = np.zeros(shape=internal_vertex_size)
+
+        for node_number, node in enumerate(node_connect):
+            coords = node_connect[node]
+            edge_coords = edge_connect[node]
+
+            for edge in range(4):
+
+                if edge == 3:
+                    vector_l = coords[0] - coords[edge]
+
+                else:
+                    vector_l = coords[edge + 1] - coords[edge]
+
+                normal = np.cross(vector_l, z_vector)
+                unit_normal_x = (normal / np.linalg.norm(normal))[0]
+                unit_normal_y = (normal / np.linalg.norm(normal))[1]
+                area = np.linalg.norm(vector_l)
+
+                Cfx[node_number] += (area * unit_normal_x) * np.sin(edge_coords[edge][0])
+                Cfy[node_number] += (area * unit_normal_y) * np.cos(edge_coords[edge][1]) * 1.5
+
+            dphidx[node_number] = Cfx[node_number] / volume[node]
+            dphidy[node_number] = Cfy[node_number] / volume[node]
+        return dphidx, dphidy
 
     @property
     def dphi_dxdy_hybrid_plus(self):
@@ -409,15 +409,15 @@ class Elements:
             for i in range(8):
                 l_vector = (edge_center_coordinates[index_edge_center[i]]
                             - element_center_coordinates[index_element_center[i]]) * np.power(-1, i)
-                phi_act = (edge_center_coordinates[index_edge_center[i]]
-                           + element_center_coordinates[index_element_center[i]]) / 2
                 normal = np.cross(l_vector, z_vector)
                 unit_normal_x = (normal / np.linalg.norm(normal))[0]
                 unit_normal_y = (normal / np.linalg.norm(normal))[1]
                 area = np.linalg.norm(l_vector)
 
-                Cfx[vertex_number] += (area * unit_normal_x) * np.sin(phi_act[0])
-                Cfy[vertex_number] += (area * unit_normal_y) * 1.5 * np.cos(phi_act[1])
+                Cfx[vertex_number] += (area * unit_normal_x) * np.sin(edge_center_coordinates
+                                                                      [index_edge_center[i]][0])
+                Cfy[vertex_number] += (area * unit_normal_y) * 1.5 * np.cos(edge_center_coordinates
+                                                                            [index_edge_center[i]][1])
 
             dphidx[vertex_number] = Cfx[vertex_number] / volume[vertex]
             dphidy[vertex_number] = Cfy[vertex_number] / volume[vertex]
@@ -459,7 +459,7 @@ class Elements:
     @property
     def error_dxdy_hybrid(self):
 
-        dphidxdy = self.dphi_dxdy_hybrid_plus
+        dphidxdy = self.dphi_dxdy_hybrid
         analytical_dphi = self.hybrid_analytical
         volume = self.hybrid_volume[0]
         volume_array = np.array(list(volume.values()))
@@ -503,7 +503,7 @@ class Elements:
 
     def heatmap(self):
 
-        dphi_dxdy_hybrid = self.dphi_dxdy_hybrid_plus
+        dphi_dxdy_hybrid = self.dphi_dxdy_hybrid
         dphi_dxdy_standard = self.dphi_dxdy_standard
         dphi_dx_hybrid = dphi_dxdy_hybrid[0]
         dphi_dy_hybrid = dphi_dxdy_hybrid[1]
@@ -582,7 +582,6 @@ class Elements:
 
         plt.show()
         return
-
 
 # mesh1 = Elements(1 / 4, alpha=0.26)
 # mesh3 = Elements(1 / 4, alpha=0.46)
