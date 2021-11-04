@@ -7,7 +7,7 @@ from matplotlib.collections import LineCollection
 import seaborn as sns
 
 
-class Elements:
+class SkewedElements:
 
     def __init__(self, delta_x, alpha=0.0):
         self.MeshSpacing = delta_x
@@ -196,10 +196,8 @@ class Elements:
 
             axs2.plot(x_coords_element_centers, y_coords_element_centers, linestyle=':', color='black')
             axs2.fill(x_coords_element_centers, y_coords_element_centers, facecolor='#061A40', alpha=0.1)
-        axs2.plot([element_center_dict[6][0][0],
-                   element_center_dict[16][3][0]],
-                  [element_center_dict[6][0][1],
-                   element_center_dict[16][3][1]], color='black', linestyle=':')
+            print(element_center_dict)
+        # axs2.plot(, color='black', linestyle=':')
 
         axs1.plot(x_coords, y_coords, color='black')
         axs1.plot(squarey, squarex, color='black')
@@ -349,7 +347,7 @@ class Elements:
         internal_vertex_size = int(np.power((self.cell_size - 1), 2))
         z_vector = self.z_vector
         volume = self.hybrid_volume[0]
-        volume_centroid = self.hybrid_volume[1]
+        volume_centroid = self.standard_volume[1]
         dphidx = np.zeros(shape=internal_vertex_size)
         dphidy = np.zeros(shape=internal_vertex_size)
         Cfx = np.zeros(shape=internal_vertex_size)
@@ -358,7 +356,7 @@ class Elements:
         for node_number, node in enumerate(node_connect):
             coords = node_connect[node]
             volume_centroid_coord = volume_centroid[node]
-            edgeee = edge_connect[node]
+            edge_coords = edge_connect[node]
             for edge in range(4):
 
                 if edge == 3:
@@ -374,8 +372,8 @@ class Elements:
                 unit_normal_y = (normal / np.linalg.norm(normal))[1]
                 area = np.linalg.norm(vector_l)
 
-                Cfx[node_number] += (area * unit_normal_x) * np.sin(volume_centroid_coord[0])
-                Cfy[node_number] += (area * unit_normal_y) * np.cos(volume_centroid_coord[1]) * 1.5
+                Cfx[node_number] += (area * unit_normal_x) * np.sin(edge_coords[0])
+                Cfy[node_number] += (area * unit_normal_y) * np.cos(edge_coords[1]) * 1.5
                 # print('edgecenter:', edgeee[edge])
                 # print('edgecoord:', edge_coords)
                 # print('volumecoord:', volume_centroid_coord)
@@ -459,7 +457,7 @@ class Elements:
     @property
     def error_dxdy_hybrid(self):
 
-        dphidxdy = self.dphi_dxdy_hybrid
+        dphidxdy = self.dphi_dxdy_hybrid_plus
         analytical_dphi = self.hybrid_analytical
         volume = self.hybrid_volume[0]
         volume_array = np.array(list(volume.values()))
@@ -583,7 +581,8 @@ class Elements:
         plt.show()
         return
 
-# mesh1 = Elements(1 / 4, alpha=0.26)
+
+mesh1 = SkewedElements(1 / 4, alpha=0.26)
 # mesh3 = Elements(1 / 4, alpha=0.46)
 # print(mesh1.node_connect)
 # print('\n\n', mesh1.element_centers)
@@ -603,10 +602,10 @@ class Elements:
 #     writer.writerow(hybrid_vol.values())
 #     writer.writerow(standard_vol.keys())
 #     writer.writerow(standard_vol.values())
-# mesh1.drawGraph()
+mesh1.drawGraph()
 # print(mesh1.dphi_dxdy_hybrid_plus)
 # mesh3.drawGraph()
-# plt.show()
+plt.show()
 # print(mesh1.node_connect)
 
 # ----------------------------------------------------------------------------------------------------------------------

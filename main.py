@@ -28,11 +28,11 @@ def main():
             self.alpha_3 = 0.46
             self.alpha_4 = 0.05
 
-            self.alpha_0_element = skw.Elements(self.MeshSpacing, alpha=self.alpha_0)
-            self.alpha_1_element = skw.Elements(self.MeshSpacing, alpha=self.alpha_1)
-            self.alpha_2_element = skw.Elements(self.MeshSpacing, alpha=self.alpha_2)
-            self.alpha_3_element = skw.Elements(self.MeshSpacing, alpha=self.alpha_3)
-            self.alpha_4_element = skw.Elements(self.MeshSpacing, alpha=self.alpha_4)
+            self.alpha_0_element = skw.SkewedElements(self.MeshSpacing, alpha=self.alpha_0)
+            self.alpha_1_element = skw.SkewedElements(self.MeshSpacing, alpha=self.alpha_1)
+            self.alpha_2_element = skw.SkewedElements(self.MeshSpacing, alpha=self.alpha_2)
+            self.alpha_3_element = skw.SkewedElements(self.MeshSpacing, alpha=self.alpha_3)
+            self.alpha_4_element = skw.SkewedElements(self.MeshSpacing, alpha=self.alpha_4)
 
             self.alpha_0_error_hybrid = self.alpha_0_element.error_dxdy_hybrid
             self.alpha_0_error_standard = self.alpha_0_element.error_dxdy_standard
