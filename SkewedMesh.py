@@ -363,7 +363,7 @@ class Elements:
 
                 if edge == 3:
                     vector_l = coords[0] - coords[edge]
-                    edge_coords = (coords[0] + coords[edge]) / 2
+
 
                 else:
                     vector_l = coords[edge + 1] - coords[edge]
@@ -374,8 +374,8 @@ class Elements:
                 unit_normal_y = (normal / np.linalg.norm(normal))[1]
                 area = np.linalg.norm(vector_l)
 
-                Cfx[node_number] += (area * unit_normal_x) * np.sin(edge_coords[0])
-                Cfy[node_number] += (area * unit_normal_y) * np.cos(edge_coords[1]) * 1.5
+                Cfx[node_number] += (area * unit_normal_x) * np.sin(volume_centroid_coord[0])
+                Cfy[node_number] += (area * unit_normal_y) * np.cos(volume_centroid_coord[1]) * 1.5
                 # print('edgecenter:', edgeee[edge])
                 # print('edgecoord:', edge_coords)
                 # print('volumecoord:', volume_centroid_coord)
@@ -503,7 +503,7 @@ class Elements:
 
     def heatmap(self):
 
-        dphi_dxdy_hybrid = self.dphi_dxdy_hybrid
+        dphi_dxdy_hybrid = self.dphi_dxdy_hybrid_plus
         dphi_dxdy_standard = self.dphi_dxdy_standard
         dphi_dx_hybrid = dphi_dxdy_hybrid[0]
         dphi_dy_hybrid = dphi_dxdy_hybrid[1]
