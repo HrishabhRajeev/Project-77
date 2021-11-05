@@ -362,18 +362,16 @@ class SkewedElements:
                 if edge == 3:
                     vector_l = coords[0] - coords[edge]
 
-
                 else:
                     vector_l = coords[edge + 1] - coords[edge]
-                    edge_coords = (coords[edge + 1] + coords[edge]) / 2
 
                 normal = np.cross(vector_l, z_vector)
                 unit_normal_x = (normal / np.linalg.norm(normal))[0]
                 unit_normal_y = (normal / np.linalg.norm(normal))[1]
                 area = np.linalg.norm(vector_l)
 
-                Cfx[node_number] += (area * unit_normal_x) * np.sin(edge_coords[0])
-                Cfy[node_number] += (area * unit_normal_y) * np.cos(edge_coords[1]) * 1.5
+                Cfx[node_number] += (area * unit_normal_x) * np.sin(volume_centroid_coord[0])
+                Cfy[node_number] += (area * unit_normal_y) * np.cos(volume_centroid_coord[1]) * 1.5
                 # print('edgecenter:', edgeee[edge])
                 # print('edgecoord:', edge_coords)
                 # print('volumecoord:', volume_centroid_coord)
@@ -457,7 +455,7 @@ class SkewedElements:
     @property
     def error_dxdy_hybrid(self):
 
-        dphidxdy = self.dphi_dxdy_hybrid_plus
+        dphidxdy = self.dphi_dxdy_hybrid
         analytical_dphi = self.hybrid_analytical
         volume = self.hybrid_volume[0]
         volume_array = np.array(list(volume.values()))
@@ -582,7 +580,7 @@ class SkewedElements:
         return
 
 
-mesh1 = SkewedElements(1 / 4, alpha=0.26)
+# mesh1 = SkewedElements(1 / 4, alpha=0.26)
 # mesh3 = Elements(1 / 4, alpha=0.46)
 # print(mesh1.node_connect)
 # print('\n\n', mesh1.element_centers)
@@ -602,10 +600,10 @@ mesh1 = SkewedElements(1 / 4, alpha=0.26)
 #     writer.writerow(hybrid_vol.values())
 #     writer.writerow(standard_vol.keys())
 #     writer.writerow(standard_vol.values())
-mesh1.drawGraph()
+# mesh1.drawGraph()
 # print(mesh1.dphi_dxdy_hybrid_plus)
 # mesh3.drawGraph()
-plt.show()
+# plt.show()
 # print(mesh1.node_connect)
 
 # ----------------------------------------------------------------------------------------------------------------------

@@ -536,9 +536,14 @@ def main():
             return error_metric_dx, error_metric_dy
 
     mesh_1 = Elements(1 / 10)
+    print('Done computing:', mesh_1.MeshSpacing )
     mesh_2 = Elements(1 / 20)
-    mesh_3 = Elements(1 / 40)
-    mesh_4 = Elements(1 / 80)
+    print('Done computing:', mesh_2.MeshSpacing)
+    mesh_3 = Elements(1 / 30)
+    print('Done computing:', mesh_3.MeshSpacing)
+    mesh_4 = Elements(1 / 40)
+    print('Done computing:', mesh_4.MeshSpacing)
+    print('Finished')
 
     # This shows the current node matrix based on the mesh size that you specify ---------------------------------------
 
