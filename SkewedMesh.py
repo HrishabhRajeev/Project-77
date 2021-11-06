@@ -196,7 +196,7 @@ class SkewedElements:
 
             axs2.plot(x_coords_element_centers, y_coords_element_centers, linestyle=':', color='black')
             axs2.fill(x_coords_element_centers, y_coords_element_centers, facecolor='#061A40', alpha=0.1)
-            print(element_center_dict)
+            # print(element_center_dict)
         # axs2.plot(, color='black', linestyle=':')
 
         axs1.plot(x_coords, y_coords, color='black')
@@ -580,13 +580,13 @@ class SkewedElements:
         return
 
 
-# mesh1 = SkewedElements(1 / 4, alpha=0.26)
+mesh1 = SkewedElements(1 / 4, alpha=0.3)
 # mesh3 = Elements(1 / 4, alpha=0.46)
 # print(mesh1.node_connect)
 # print('\n\n', mesh1.element_centers)
 # print('\n\n', mesh2.node_connect)
 # print('\n\n', mesh2.element_centers)
-# mesh1.drawGraph()
+mesh1.drawGraph()
 # print(mesh1.dphi_dxdy_hybrid[0])
 # print(mesh1.edge_connect)
 # print('Hybrid vol:\n', mesh1.hybrid_volume, '\n\nStandard vol:\n', mesh1.standard_volume)
@@ -603,7 +603,7 @@ class SkewedElements:
 # mesh1.drawGraph()
 # print(mesh1.dphi_dxdy_hybrid_plus)
 # mesh3.drawGraph()
-# plt.show()
+plt.show()
 # print(mesh1.node_connect)
 
 # ----------------------------------------------------------------------------------------------------------------------

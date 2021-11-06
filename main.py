@@ -28,6 +28,8 @@ def main():
             self.alpha_3 = 0.46
             self.alpha_4 = 0.05
 
+            # This is a hacky way of defining the skewness but it should be okay for now
+
             self.alpha_0_element = skw.SkewedElements(self.MeshSpacing, alpha=self.alpha_0)
             self.alpha_1_element = skw.SkewedElements(self.MeshSpacing, alpha=self.alpha_1)
             self.alpha_2_element = skw.SkewedElements(self.MeshSpacing, alpha=self.alpha_2)
