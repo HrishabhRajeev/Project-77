@@ -609,7 +609,7 @@ class SkewedElements:
 
 
 # ---------------------------------------------Saving Graphs For Animation----------------------------------------------
-
+# Comment this out when running main.py --------------------------------------------------------------------------------
 range_vector = np.linspace(0, 0.46, 150)
 print(range_vector)
 
