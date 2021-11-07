@@ -48,8 +48,5 @@ from matplotlib.collections import LineCollection
 # B = np.sum(A)
 # print(B)
 
-
-rand_dict = {1: 5.0, 2: 9.0, 128: 213.0, 23: 1230.0}
-print(rand_dict)
-print(rand_dict.keys())
-print(rand_dict.values())
+# skewness = 'img_' + str(0.001)
+# print(skewness)
