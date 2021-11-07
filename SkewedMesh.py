@@ -9,7 +9,7 @@ import seaborn as sns
 
 class SkewedElements:
 
-    def __init__(self, delta_x, alpha=0.0):
+    def __init__(self, delta_x=(1/4), alpha=0.0):
         self.MeshSpacing = delta_x
         self.Domain = 1
         self.Row_Col_Length = int(1 / delta_x + 1)
@@ -580,13 +580,13 @@ class SkewedElements:
         return
 
 
-mesh1 = SkewedElements(1 / 4, alpha=0.3)
+# ---------------------------------------------Debugging----------------------------------------------------------------
+
 # mesh3 = Elements(1 / 4, alpha=0.46)
 # print(mesh1.node_connect)
 # print('\n\n', mesh1.element_centers)
 # print('\n\n', mesh2.node_connect)
 # print('\n\n', mesh2.element_centers)
-mesh1.drawGraph()
 # print(mesh1.dphi_dxdy_hybrid[0])
 # print(mesh1.edge_connect)
 # print('Hybrid vol:\n', mesh1.hybrid_volume, '\n\nStandard vol:\n', mesh1.standard_volume)
@@ -603,7 +603,22 @@ mesh1.drawGraph()
 # mesh1.drawGraph()
 # print(mesh1.dphi_dxdy_hybrid_plus)
 # mesh3.drawGraph()
-plt.show()
 # print(mesh1.node_connect)
+
+# ----------------------------------------------------------------------------------------------------------------------
+
+
+# ---------------------------------------------Saving Graphs For Animation----------------------------------------------
+
+range_vector = np.linspace(0, 0.46, 150)
+print(range_vector)
+
+for i, j in enumerate(range_vector):
+    mesh = SkewedElements(alpha=j)
+    mesh.drawGraph()
+    number = 800+i
+    skewness = './Images/img_'+str(number)+'.png'
+    # print(skewness)
+    plt.savefig(skewness, bbox_inches='tight')
 
 # ----------------------------------------------------------------------------------------------------------------------
