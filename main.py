@@ -541,9 +541,9 @@ def main():
     print('Done computing:', mesh_1.MeshSpacing )
     mesh_2 = Elements(1 / 20)
     print('Done computing:', mesh_2.MeshSpacing)
-    mesh_3 = Elements(1 / 30)
+    mesh_3 = Elements(1 / 40)
     print('Done computing:', mesh_3.MeshSpacing)
-    mesh_4 = Elements(1 / 40)
+    mesh_4 = Elements(1 / 80)
     print('Done computing:', mesh_4.MeshSpacing)
     print('Finished')
 
