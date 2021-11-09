@@ -614,10 +614,10 @@ range_vector = np.linspace(0, 0.46, 150)
 print(range_vector)
 
 for i, j in enumerate(range_vector):
-    mesh = SkewedElements(alpha=j)
+    mesh = SkewedElements(delta_x=1/10, alpha=j)
     mesh.drawGraph()
     number = 800+i
-    skewness = './Images/img_'+str(number)+'.png'
+    skewness = './Images/Spacing_10x10/img_'+str(number)+'.png'
     # print(skewness)
     plt.savefig(skewness, bbox_inches='tight')
 
