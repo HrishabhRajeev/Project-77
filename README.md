@@ -6,7 +6,7 @@
 <h2>Notes</h2>
 <p>This code is still largely in script form, you currently need an IDE that supports Python and 
 some knowledge about how to install python libraries into your working environemnt to get 
-things working<\p>
+things working</p>
 
 <h2>Required Libraries</h2>
 <ul>

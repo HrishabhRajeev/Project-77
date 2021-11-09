@@ -582,7 +582,7 @@ class SkewedElements:
 
 # ---------------------------------------------Debugging----------------------------------------------------------------
 
-# mesh3 = Elements(1 / 4, alpha=0.46)
+mesh1 = SkewedElements(delta_x=1/4, alpha=0)
 # print(mesh1.node_connect)
 # print('\n\n', mesh1.element_centers)
 # print('\n\n', mesh2.node_connect)
@@ -600,25 +600,24 @@ class SkewedElements:
 #     writer.writerow(hybrid_vol.values())
 #     writer.writerow(standard_vol.keys())
 #     writer.writerow(standard_vol.values())
-# mesh1.drawGraph()
+mesh1.drawGraph()
+plt.show()
 # print(mesh1.dphi_dxdy_hybrid_plus)
-# mesh3.drawGraph()
 # print(mesh1.node_connect)
-
 # ----------------------------------------------------------------------------------------------------------------------
 
 
 # ---------------------------------------------Saving Graphs For Animation----------------------------------------------
 # Comment this out when running main.py --------------------------------------------------------------------------------
-range_vector = np.linspace(0, 0.46, 150)
-print(range_vector)
+# range_vector = np.linspace(0, 0.46, 150)
+# print(range_vector)
 
-for i, j in enumerate(range_vector):
-    mesh = SkewedElements(delta_x=1/10, alpha=j)
-    mesh.drawGraph()
-    number = 800+i
-    skewness = './Images/Spacing_10x10/img_'+str(number)+'.png'
-    # print(skewness)
-    plt.savefig(skewness, bbox_inches='tight')
+# for i, j in enumerate(range_vector):
+#     mesh = SkewedElements(delta_x=1/10, alpha=j)
+#     mesh.drawGraph()
+#     number = 800+i
+#     skewness = './Images/Spacing_10x10/img_'+str(number)+'.png'
+#     # print(skewness)
+#     plt.savefig(skewness, bbox_inches='tight')
 
 # ----------------------------------------------------------------------------------------------------------------------
